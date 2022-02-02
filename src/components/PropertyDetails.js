@@ -20,10 +20,8 @@ const PropertyDetails = ({ pathId, properties }) => {
   const navigate = useNavigate();
 
   const item = properties.filter((e) => e.id == pathId)[0];
-  console.log(item);
 
   const formatedAdress = item.adress.replace(" ", "+");
-  console.log(formatedAdress);
 
   const closeDetails = () => {
     navigate("/properties/");

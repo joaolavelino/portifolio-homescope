@@ -5,6 +5,28 @@ const GlobalStyle = createGlobalStyle`
   a{
     text-decoration: none;
   }
+
+  select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .4s;
+    cursor: pointer;
+    &.outline{
+      border: 2px solid white;
+      color: white;
+      background: none;
+      &:hover{
+        background-color: white;
+        border: 2px solid white;
+        color:darkorange;
+      }
+    }
+    }
   
   button {
     border:none;

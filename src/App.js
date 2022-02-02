@@ -10,24 +10,43 @@ function App() {
   useEffect(() => {
     const data = getInitialData();
     setProperties(JSON.parse(localStorage.getItem("homescope")));
+    setFilteredProperties(JSON.parse(localStorage.getItem("homescope")));
   }, []);
 
   const [properties, setProperties] = useState(null);
+  const [filteredProperties, setFilteredProperties] = useState(null);
+  const [city, setCity] = useState("Zurich");
 
   return (
     <>
-      {properties && (
+      {filteredProperties && (
         <>
           <GlobalStyle />
           <Header />
           <Routes>
             <Route
               path="/properties"
-              element={<Properties properties={properties} />}
+              element={
+                <Properties
+                  properties={properties}
+                  setProperties={setProperties}
+                  filteredProperties={filteredProperties}
+                  setFilteredProperties={setFilteredProperties}
+                  city={city}
+                />
+              }
             />
             <Route
               path="/properties/:id"
-              element={<Properties properties={properties} />}
+              element={
+                <Properties
+                  properties={properties}
+                  setProperties={setProperties}
+                  filteredProperties={filteredProperties}
+                  setFilteredProperties={setFilteredProperties}
+                  city={city}
+                />
+              }
             />
           </Routes>
         </>

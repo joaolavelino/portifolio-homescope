@@ -19,53 +19,57 @@ const Card = ({ item, details, setDetails }) => {
         <div className="rent">
           <h3>CHF {item.rent}</h3>
         </div>
-        <div className={`info ${showInfo ? "show" : ""}`}>
-          <header>
-            <h3>{item.district}</h3>
-            <h4>{item.city}</h4>
-          </header>
-          <section className="area-rooms">
-            <div>
-              <h5>Rooms</h5> <p>{item.rooms}</p>
-            </div>
-            <div>
-              <h5>area</h5> <p>{item.area}sqm</p>
-            </div>
-          </section>
-          <ul className="graphs">
-            <li>
-              <h5>Location</h5>
-              <div
-                className={`graphBar ${
-                  showInfo ? `width${item.location}0` : ``
-                }`}
-              ></div>
-            </li>
-            <li>
-              <h5>space</h5>
-              <div
-                className={`graphBar ${showInfo ? `width${item.space}0` : ``}`}
-              ></div>
-            </li>
-            <li>
-              <h5>quality</h5>
-              <div
-                className={`graphBar ${
-                  showInfo ? `width${item.quality}0` : ``
-                }`}
-              ></div>
-            </li>
-            <li>
-              <h5>transport</h5>
-              <div
-                className={`graphBar ${
-                  showInfo ? `width${item.transport}0` : ``
-                }`}
-              ></div>
-            </li>
-          </ul>
-        </div>
-        <img src={item.img[0]} alt="Property Image" />
+        <figure>
+          <figcaption className={`info ${showInfo ? "show" : ""}`}>
+            <header>
+              <h3>{item.district}</h3>
+              <h4>{item.city}</h4>
+            </header>
+            <section className="area-rooms">
+              <div>
+                <h5>Rooms</h5> <p>{item.rooms}</p>
+              </div>
+              <div>
+                <h5>area</h5> <p>{item.area}sqm</p>
+              </div>
+            </section>
+            <ul className="graphs">
+              <li>
+                <h5>Location</h5>
+                <div
+                  className={`graphBar ${
+                    showInfo ? `width${item.location}0` : ``
+                  }`}
+                ></div>
+              </li>
+              <li>
+                <h5>space</h5>
+                <div
+                  className={`graphBar ${
+                    showInfo ? `width${item.space}0` : ``
+                  }`}
+                ></div>
+              </li>
+              <li>
+                <h5>quality</h5>
+                <div
+                  className={`graphBar ${
+                    showInfo ? `width${item.quality}0` : ``
+                  }`}
+                ></div>
+              </li>
+              <li>
+                <h5>transport</h5>
+                <div
+                  className={`graphBar ${
+                    showInfo ? `width${item.transport}0` : ``
+                  }`}
+                ></div>
+              </li>
+            </ul>
+          </figcaption>
+          <img src={item.img[0]} alt="Property Image" />
+        </figure>
       </StyledCard>
     </Link>
   );

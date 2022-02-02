@@ -3,10 +3,10 @@ import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
-const DisplayCards = ({ properties, details, setDetails }) => {
+const DisplayCards = ({ filteredProperties, details, setDetails }) => {
   return (
     <Cards>
-      {properties.map((e) => (
+      {filteredProperties.map((e) => (
         <Card key={e.id} item={e} onClick={setDetails} details={details} />
       ))}
     </Cards>
@@ -21,7 +21,7 @@ const Cards = styled(motion.section)`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
-  margin: 10rem 5rem;
+  margin: 3rem 5rem;
   @media screen and (max-width: 600px) {
     margin: 10rem 1rem;
   }
