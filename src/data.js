@@ -1,10 +1,8 @@
 import list from "./db.json";
 
 export const getInitialData = () => {
-  if (!localStorage.getItem("homescope").length) {
+  if (!localStorage.getItem("homescope")) {
     return localStorage.setItem("homescope", JSON.stringify(list.properties));
-  } else {
-    return list;
   }
 };
 

@@ -2,7 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   //colors
-
+  a{
+    text-decoration: none;
+  }
+  
   button {
     border:none;
     height: 2rem;
@@ -13,9 +16,11 @@ const GlobalStyle = createGlobalStyle`
     font-weight: bold;
     text-transform: uppercase;
     background-color: darkorange;
+    color: white;
     border-radius: 5px;
     padding: 1rem 2rem;
     transition:0.4s;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
     cursor: pointer;
     &:hover{
       background-color: #ff9d00;
@@ -31,13 +36,14 @@ const GlobalStyle = createGlobalStyle`
       background: none;
       &:hover{
         background-color: white;
-        border: none;
+        border: 2px solid white;
         color:darkorange;
       }
     }
     &.white{
       background-color:white;
       border: 2px solid white;
+      color: black;
       &:hover{
         background-color: transparent;
         border: 2px solid white;
@@ -46,6 +52,9 @@ const GlobalStyle = createGlobalStyle`
     }
     &.green{
       background-color: #17bebb;
+    }
+    p{
+      margin-right: 1rem;
     }
   }
 

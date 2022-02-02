@@ -71,6 +71,9 @@ const FilterSearchBar = ({ display, setDisplay }) => {
 export default FilterSearchBar;
 
 const PropertiesBar = styled(motion.section)`
+  position: fixed;
+  top: 70px;
+  z-index: 9;
   background-color: darkorange;
   color: white;
   display: flex;
@@ -94,6 +97,9 @@ const PropertiesBar = styled(motion.section)`
 `;
 
 const PropertiesBarHidden = styled(motion.section)`
+  position: fixed;
+  z-index: 9;
+  top: 70px;
   background-color: darkorange;
   color: white;
   display: flex;

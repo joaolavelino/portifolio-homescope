@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Card = ({ item }) => {
+const Card = ({ item, details, setDetails }) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const infoHandlerTrue = () => {
@@ -13,46 +14,60 @@ const Card = ({ item }) => {
   };
 
   return (
-    <StyledCard onHoverStart={infoHandlerTrue} onHoverEnd={infoHandlerFalse}>
-      <div className="rent">
-        <h3>CHF {item.rent}</h3>
-      </div>
-      <div className={`info ${showInfo ? "show" : ""}`}>
-        <header>
-          <h3>{item.district}</h3>
-          <h4>{item.city}</h4>
-        </header>
-        <ul className="graphs">
-          <li>
-            <h5>Location</h5>
-            <div
-              className={`graphBar ${showInfo ? `width${item.location}0` : ``}`}
-            ></div>
-          </li>
-          <li>
-            <h5>space</h5>
-            <div
-              className={`graphBar ${showInfo ? `width${item.space}0` : ``}`}
-            ></div>
-          </li>
-          <li>
-            <h5>quality</h5>
-            <div
-              className={`graphBar ${showInfo ? `width${item.quality}0` : ``}`}
-            ></div>
-          </li>
-          <li>
-            <h5>transport</h5>
-            <div
-              className={`graphBar ${
-                showInfo ? `width${item.transport}0` : ``
-              }`}
-            ></div>
-          </li>
-        </ul>
-      </div>
-      <img src={item.img[0]} alt="Property Image" />
-    </StyledCard>
+    <Link to={`/properties/${item.id}`}>
+      <StyledCard onHoverStart={infoHandlerTrue} onHoverEnd={infoHandlerFalse}>
+        <div className="rent">
+          <h3>CHF {item.rent}</h3>
+        </div>
+        <div className={`info ${showInfo ? "show" : ""}`}>
+          <header>
+            <h3>{item.district}</h3>
+            <h4>{item.city}</h4>
+          </header>
+          <section className="area-rooms">
+            <div>
+              <h5>Rooms</h5> <p>{item.rooms}</p>
+            </div>
+            <div>
+              <h5>area</h5> <p>{item.area}sqm</p>
+            </div>
+          </section>
+          <ul className="graphs">
+            <li>
+              <h5>Location</h5>
+              <div
+                className={`graphBar ${
+                  showInfo ? `width${item.location}0` : ``
+                }`}
+              ></div>
+            </li>
+            <li>
+              <h5>space</h5>
+              <div
+                className={`graphBar ${showInfo ? `width${item.space}0` : ``}`}
+              ></div>
+            </li>
+            <li>
+              <h5>quality</h5>
+              <div
+                className={`graphBar ${
+                  showInfo ? `width${item.quality}0` : ``
+                }`}
+              ></div>
+            </li>
+            <li>
+              <h5>transport</h5>
+              <div
+                className={`graphBar ${
+                  showInfo ? `width${item.transport}0` : ``
+                }`}
+              ></div>
+            </li>
+          </ul>
+        </div>
+        <img src={item.img[0]} alt="Property Image" />
+      </StyledCard>
+    </Link>
   );
 };
 
@@ -71,6 +86,10 @@ const StyledCard = styled(motion.article)`
     box-shadow: 7px 7px 18px rgba(0, 0, 0, 0.4);
     transform: translate(0, -0.6rem);
     transform: scale(1.05);
+    .rent {
+      transform: scale(1.25);
+      transform-origin: top left;
+    }
   }
   img {
     position: absolute;
@@ -81,7 +100,7 @@ const StyledCard = styled(motion.article)`
   }
   .rent {
     position: absolute;
-
+    transition: 0.4s;
     left: 30px;
     top: 0;
     background-color: #17bebb;
@@ -94,7 +113,7 @@ const StyledCard = styled(motion.article)`
 
   .info {
     position: absolute;
-    bottom: -10rem;
+    bottom: -11rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -110,6 +129,21 @@ const StyledCard = styled(motion.article)`
     transition: 0.4s;
     header {
       font-size: 150%;
+    }
+    .area-rooms {
+      display: flex;
+      width: 100%;
+      margin: 0.5rem 0;
+      div {
+        width: 50%;
+        margin: 0.5rem 0;
+        padding: 0 1rem;
+        border-left: 2px solid white;
+        p {
+          font-weight: bolder;
+          font-size: 150%;
+        }
+      }
     }
     .graphs {
       list-style: none;
@@ -187,7 +221,7 @@ const StyledCard = styled(motion.article)`
   }
 
   .show {
-    transform: translateY(-10rem);
+    transform: translateY(-11rem);
     transition: 0.4s;
   }
 `;
