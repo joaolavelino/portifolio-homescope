@@ -27,6 +27,28 @@ const GlobalStyle = createGlobalStyle`
       }
     }
     }
+
+    input{
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      transition: .4s;
+      cursor: text;
+      &.outline{
+        border: 2px solid white;
+        color: white;
+        background: none;
+        &:hover{
+          background-color: white;
+          border: 2px solid white;
+          color:darkorange;
+        }
+      }
+    }
+    
   
   button {
     border:none;
@@ -75,8 +97,11 @@ const GlobalStyle = createGlobalStyle`
     &.green{
       background-color: #17bebb;
     }
-    p{
+    p, h5, h4, h6{
       margin-right: 1rem;
+    }
+    *{
+      pointer-events: none;
     }
   }
 
@@ -93,6 +118,7 @@ const GlobalStyle = createGlobalStyle`
 
   body{
     font-family: 'Roboto', sans-serif;
+    width: 100vw;
   }
 
 

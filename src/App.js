@@ -4,6 +4,7 @@ import GlobalStyle from "./globalStyles";
 import { getInitialData } from "./data";
 import Properties from "./pages/properties";
 import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
 
 function App() {
   //get initial data as one opens the page for the first time
@@ -15,7 +16,7 @@ function App() {
 
   const [properties, setProperties] = useState(null);
   const [filteredProperties, setFilteredProperties] = useState(null);
-  const [city, setCity] = useState("Zurich");
+  const [city, setCity] = useState("Zürich");
 
   return (
     <>
@@ -25,7 +26,13 @@ function App() {
           <Header />
           <Routes>
             <Route
-              path="/properties"
+              path="/"
+              element={
+                <Home city={city} setCity={setCity} properties={properties} />
+              }
+            />
+            <Route
+              path="/properties/:city"
               element={
                 <Properties
                   properties={properties}
@@ -37,7 +44,7 @@ function App() {
               }
             />
             <Route
-              path="/properties/:id"
+              path="/properties/listing/:id"
               element={
                 <Properties
                   properties={properties}

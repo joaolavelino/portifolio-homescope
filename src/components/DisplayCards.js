@@ -23,6 +23,6 @@ const Cards = styled(motion.section)`
   grid-row-gap: 2rem;
   margin: 3rem 5rem;
   @media screen and (max-width: 600px) {
-    margin: 10rem 1rem;
+    margin: 1rem 1rem;
   }
 `;

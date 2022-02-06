@@ -14,7 +14,7 @@ const Card = ({ item, details, setDetails }) => {
   };
 
   return (
-    <Link to={`/properties/${item.id}`}>
+    <Link to={`/properties/listing/${item.id}`}>
       <StyledCard onHoverStart={infoHandlerTrue} onHoverEnd={infoHandlerFalse}>
         <div className="rent">
           <h3>CHF {item.rent}</h3>

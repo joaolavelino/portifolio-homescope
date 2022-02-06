@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { BsTree, BsMap } from "react-icons/bs";
+import { BsTree, BsMap, BsEye } from "react-icons/bs";
 import { BiTrain, BiBus } from "react-icons/bi";
 import { GiHighGrass } from "react-icons/gi";
 import {
@@ -24,7 +24,7 @@ const PropertyDetails = ({ pathId, properties }) => {
   const formatedAdress = item.adress.replace(" ", "+");
 
   const closeDetails = () => {
-    navigate("/properties/");
+    navigate(-1);
   };
 
   return (
@@ -113,6 +113,12 @@ const PropertyDetails = ({ pathId, properties }) => {
                     </div>
                   )}
 
+                  {item.view && (
+                    <div>
+                      <BsEye />
+                      <h5>view</h5>
+                    </div>
+                  )}
                   {item.market && (
                     <div>
                       <MdOutlineShoppingCart />
@@ -350,7 +356,7 @@ const DetailsCard = styled(motion.article)`
     .info-box {
       margin: 0 0 2rem;
       padding: 2rem;
-      background-color: darkorange;
+      background-color: #17bebb;
       opacity: 01;
       color: white;
 

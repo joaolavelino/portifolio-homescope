@@ -2,11 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
+import { GiCoinsPile } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <StyledHeader>
-      <h1>Homescape</h1>
+      <Link to="/">
+        <h1>Homescope</h1>
+      </Link>
       <AiOutlineMenu />
     </StyledHeader>
   );
@@ -25,6 +29,12 @@ const StyledHeader = styled(motion.header)`
   padding: 1rem 5rem;
   background-color: #17bebb;
   color: white;
+  @media screen and (max-width: 480px) {
+    padding: 1rem 2rem;
+  }
+  a {
+    color: white;
+  }
 `;
 
 export default Header;
