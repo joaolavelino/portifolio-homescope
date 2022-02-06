@@ -10,4 +10,4 @@ It's a personal project created for learning purposes. It's built as SPA, using 
 
 The project was built upon a simple database collected on a real-estate website and gathered on a JSON file available on the public folder.
 
-The main focus is the building of the user interface, hence there won't be (in a first iteration of the project) a back-end structure. The interations with the JSON file will be made using the local storage.
+The main focus is the building of the user interface, hence there won't be (in a first iteration of the project) a back-end structure. The interactions with the JSON file will be made using the local storage.
