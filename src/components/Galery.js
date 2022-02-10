@@ -72,7 +72,7 @@ const Gallery = ({ img }) => {
           onClick={toggleFullScreenGallery}
         />
       ))}
-      <footer className="selectors">
+      <div className="selectors">
         {img.map((e, index) => (
           <div
             className={`selector ${position == index ? "active" : ""}`}
@@ -80,7 +80,7 @@ const Gallery = ({ img }) => {
             onClick={() => setPosition(index)}
           ></div>
         ))}
-      </footer>
+      </div>
     </Container>
   );
 };
@@ -166,13 +166,14 @@ const Container = styled.div`
     }
   }
 
-  footer {
+  .selectors {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 2rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
     z-index: 13;

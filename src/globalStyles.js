@@ -6,16 +6,30 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  select {
-    padding: 0.5rem 1rem;
+  textarea {
+    display: block;
+    width: 100%;
+    height: 10rem;
+    font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    outline: none;
+    padding: 1rem;
     border: none;
     border-radius: 5px;
-    transition: .4s;
-    cursor: pointer;
+    &:focus{
+      outline: none;
+    }
+    
+  }
+
+  input{
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: .4s;
+  cursor: text;
     &.outline{
       border: 2px solid white;
       color: white;
@@ -26,29 +40,33 @@ const GlobalStyle = createGlobalStyle`
         color:darkorange;
       }
     }
-    }
+  }
 
-    input{
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      text-transform: uppercase;
-      outline: none;
-      border: none;
-      border-radius: 5px;
-      transition: .4s;
-      cursor: text;
+  select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .4s;
+    cursor: pointer;
       &.outline{
+      border: 2px solid white;
+      color: white;
+      background: none;
+      &:hover{
+        background-color: white;
         border: 2px solid white;
-        color: white;
-        background: none;
-        &:hover{
-          background-color: white;
-          border: 2px solid white;
-          color:darkorange;
-        }
+        color:darkorange;
       }
     }
+  }
+
+
     
+
   
   button {
     border:none;
@@ -84,6 +102,11 @@ const GlobalStyle = createGlobalStyle`
         color:darkorange;
       }
     }
+    &.small{
+      border-radius: 2px;
+      padding: .2rem .5rem;
+      font-size: 80%;
+    }
     &.white{
       background-color:white;
       border: 2px solid white;
@@ -97,8 +120,18 @@ const GlobalStyle = createGlobalStyle`
     &.green{
       background-color: #17bebb;
     }
+
+    &.gray{
+      background-color: gray;
+      &:hover{
+        background-color: darkgray;
+      }
+    }
+
+
     p, h5, h4, h6{
       margin-right: 1rem;
+      
     }
     *{
       pointer-events: none;
@@ -111,14 +144,32 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   }
 
-  h1,h2,h3,h4,h5,h6{
+  h1,h2,h3,h4,h5,h6, label, legend{
     font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
+    font-weight: bolder;
+  }
+
+  p.error{
+    color: red;
+  }
+
+  legend{
+    padding: 0 1rem;
+  }
+  label{
+    font-size: 1rem;
+    margin-right: 1rem;
   }
 
   body{
     font-family: 'Roboto', sans-serif;
-    width: 100vw;
+    width: 100%;
+  }
+
+  main{
+    margin-top: 10rem;
+    width: 100%;
   }
 
 

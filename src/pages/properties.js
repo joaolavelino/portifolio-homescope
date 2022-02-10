@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import DisplayCards from "../components/DisplayCards";
 import DisplayGrid from "../components/DisplayGrid";
@@ -20,8 +20,12 @@ const Properties = ({
   //GET CURRENT LOCATION
   const location = useLocation();
   const pathId = location.pathname.split("/")[3];
+  const navigate = useNavigate();
 
   useEffect(() => {
+    {
+      !city.length && navigate("/");
+    }
     let cityFilter = properties.filter((e) => e.city === city);
     setPropertiesCity(cityFilter);
   }, []);
@@ -35,8 +39,7 @@ const Properties = ({
   return (
     <>
       {propertiesCity && (
-        <>
-          <h1>erro</h1>
+        <main>
           <Header className="header">
             <Title>
               <h3>Search results in </h3>
@@ -75,15 +78,15 @@ const Properties = ({
           {pathId && filteredProperties && (
             <PropertyDetails pathId={pathId} properties={properties} />
           )}
-        </>
+        </main>
       )}
     </>
   );
 };
 
 const Header = styled(motion.div)`
-  padding: 8rem 0 2rem;
-  width: 100vw;
+  padding: 0 0 2rem;
+  width: 100%;
   top: 0;
   display: flex;
   align-items: flex-end;

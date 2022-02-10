@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BsTree, BsMap, BsEye } from "react-icons/bs";
 import { BiTrain, BiBus } from "react-icons/bi";
 import { GiHighGrass } from "react-icons/gi";
@@ -11,6 +11,7 @@ import {
   MdOutlineChair,
   MdOutlineEmail,
   MdClose,
+  MdInsertEmoticon,
 } from "react-icons/md";
 import styled from "styled-components";
 import Gallery from "./Galery";
@@ -21,7 +22,7 @@ const PropertyDetails = ({ pathId, properties }) => {
 
   const item = properties.filter((e) => e.id == pathId)[0];
 
-  const formatedAdress = item.adress.replace(" ", "+");
+  const formatedAddress = item.address.replace(" ", "+");
 
   const closeDetails = () => {
     navigate(-1);
@@ -60,7 +61,7 @@ const PropertyDetails = ({ pathId, properties }) => {
             <div className="info-box">
               <div className="adress">
                 <h4>
-                  {item.adress}, {item.number}
+                  {item.address}, {item.number}
                 </h4>
                 <h4>floor: {item.floor}</h4>
               </div>
@@ -152,13 +153,13 @@ const PropertyDetails = ({ pathId, properties }) => {
                 </div>
               </div>
             </div>
-            <p>{item.description}</p>
+            <p className="description">{item.description}</p>
           </div>
 
           <div className="right">
             <div className="links">
               <a
-                href={`https://www.google.com/maps/search/?api=1&query=${formatedAdress}+${item.number}+${item.city}`}
+                href={`https://www.google.com/maps/search/?api=1&query=${formatedAddress}+${item.number}+${item.city}`}
                 target="_blank"
               >
                 <button>
@@ -181,6 +182,14 @@ const PropertyDetails = ({ pathId, properties }) => {
             </div>
           </div>
         </div>
+        <footer>
+          <button
+            className="gray small"
+            onClick={() => navigate(`/addEdit/${item.id}`)}
+          >
+            Edit
+          </button>
+        </footer>
       </DetailsCard>
     </Shadow>
   );
@@ -314,6 +323,7 @@ const DetailsCard = styled(motion.article)`
 
       p {
         text-align: justify;
+        white-space: pre-wrap;
       }
     }
 
@@ -432,6 +442,13 @@ const DetailsCard = styled(motion.article)`
         }
       }
     }
+  }
+  footer {
+    z-index: 14;
+    padding: 1rem 2rem;
+    background-color: lightgray;
+    display: flex;
+    justify-content: end;
   }
 `;
 

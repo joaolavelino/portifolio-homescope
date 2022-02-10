@@ -86,7 +86,7 @@ const Home = ({ city, setCity, properties }) => {
   );
 };
 
-const HomeContainer = styled(motion.main)`
+const HomeContainer = styled(motion.div)`
   position: relative;
   width: 100vw;
   height: 100vh;

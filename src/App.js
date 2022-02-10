@@ -5,8 +5,12 @@ import { getInitialData } from "./data";
 import Properties from "./pages/properties";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
+import AddEdit from "./pages/addEdit";
 
 function App() {
+  const [properties, setProperties] = useState(null);
+  const [filteredProperties, setFilteredProperties] = useState(null);
+  const [city, setCity] = useState("");
   //get initial data as one opens the page for the first time
   useEffect(() => {
     const data = getInitialData();
@@ -14,9 +18,9 @@ function App() {
     setFilteredProperties(JSON.parse(localStorage.getItem("homescope")));
   }, []);
 
-  const [properties, setProperties] = useState(null);
-  const [filteredProperties, setFilteredProperties] = useState(null);
-  const [city, setCity] = useState("Zürich");
+  useEffect(() => {
+    localStorage.setItem("homescope", JSON.stringify(properties));
+  }, [properties]);
 
   return (
     <>
@@ -52,6 +56,24 @@ function App() {
                   filteredProperties={filteredProperties}
                   setFilteredProperties={setFilteredProperties}
                   city={city}
+                />
+              }
+            />
+            <Route
+              path="/addEdit/"
+              element={
+                <AddEdit
+                  properties={properties}
+                  setProperties={setProperties}
+                />
+              }
+            />
+            <Route
+              path="/addEdit/:id"
+              element={
+                <AddEdit
+                  properties={properties}
+                  setProperties={setProperties}
                 />
               }
             />
