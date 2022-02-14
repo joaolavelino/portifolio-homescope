@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { pageAnimation, homeAnimation, quickFade } from "../animation";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -42,47 +43,61 @@ const Home = ({ city, setCity, properties }) => {
   };
 
   return (
-    <HomeContainer>
-      <div className="bg">
-        {cityImg.map((img, index) => (
-          <img
-            src={img.img}
-            key={`imageList${index}`}
-            className={img.city == city ? "active" : ""}
-          />
-        ))}
-      </div>
-      <section className="content">
-        <header>
-          <h3>Welcome to</h3>
-          <h1>Homescope</h1>
-        </header>
-        {cityList && (
-          <>
-            {cityList.length && (
-              <form onSubmit={searchHandler}>
-                <datalist id="cities"></datalist>
-                <label htmlFor="">
-                  <h4>Select a city</h4>
-                </label>
-                <select
-                  type="text"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                >
-                  {cityList.map((city, index) => (
-                    <option value={city} key={`datalist${index}`}>
-                      {city}
-                    </option>
-                  ))}
-                </select>
-                <button>Search</button>
-              </form>
-            )}
-          </>
-        )}
-      </section>
-    </HomeContainer>
+    <AnimatePresence>
+      <HomeContainer
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        <div className="bg">
+          {cityImg.map((img, index) => (
+            <img
+              src={img.img}
+              key={`imageList${index}`}
+              className={img.city == city ? "active" : ""}
+            />
+          ))}
+        </div>
+        <section className="content">
+          <header>
+            <motion.h3 variants={homeAnimation}>Welcome to</motion.h3>
+            <motion.h1 variants={homeAnimation}>Homescope</motion.h1>
+          </header>
+          {cityList && (
+            <>
+              {cityList.length && (
+                <motion.form onSubmit={searchHandler}>
+                  <datalist id="cities"></datalist>
+                  <motion.label htmlFor="" variants={quickFade}>
+                    <h4>Select a city</h4>
+                  </motion.label>
+                  <motion.select
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    variants={quickFade}
+                  >
+                    {cityList.map((city, index) => (
+                      <option value={city} key={`datalist${index}`}>
+                        {city}
+                      </option>
+                    ))}
+                  </motion.select>
+                  <motion.button variants={quickFade}>Search</motion.button>
+                </motion.form>
+              )}
+              <button
+                className="small outline add"
+                onClick={() => navigate("/addEdit/")}
+              >
+                Add new listing
+              </button>
+            </>
+          )}
+        </section>
+      </HomeContainer>
+    </AnimatePresence>
   );
 };
 
@@ -110,7 +125,7 @@ const HomeContainer = styled(motion.div)`
       height: 100%;
       object-fit: cover;
       opacity: 0;
-      transition: 0.4s;
+      transition: 0.6s;
       filter: saturate(0);
       &.active {
         opacity: 0.3;
@@ -140,6 +155,11 @@ const HomeContainer = styled(motion.div)`
     button {
       width: 100%;
     }
+  }
+
+  .add {
+    position: fixed;
+    bottom: 5rem;
   }
 `;
 

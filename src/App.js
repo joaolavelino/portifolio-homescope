@@ -6,6 +6,9 @@ import Properties from "./pages/properties";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import AddEdit from "./pages/addEdit";
+import { AnimatePresence } from "framer-motion";
+import Pagina404 from "./pages/404";
+import Footer from "./components/Footer";
 
 function App() {
   const [properties, setProperties] = useState(null);
@@ -28,56 +31,60 @@ function App() {
         <>
           <GlobalStyle />
           <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home city={city} setCity={setCity} properties={properties} />
-              }
-            />
-            <Route
-              path="/properties/:city"
-              element={
-                <Properties
-                  properties={properties}
-                  setProperties={setProperties}
-                  filteredProperties={filteredProperties}
-                  setFilteredProperties={setFilteredProperties}
-                  city={city}
-                />
-              }
-            />
-            <Route
-              path="/properties/listing/:id"
-              element={
-                <Properties
-                  properties={properties}
-                  setProperties={setProperties}
-                  filteredProperties={filteredProperties}
-                  setFilteredProperties={setFilteredProperties}
-                  city={city}
-                />
-              }
-            />
-            <Route
-              path="/addEdit/"
-              element={
-                <AddEdit
-                  properties={properties}
-                  setProperties={setProperties}
-                />
-              }
-            />
-            <Route
-              path="/addEdit/:id"
-              element={
-                <AddEdit
-                  properties={properties}
-                  setProperties={setProperties}
-                />
-              }
-            />
-          </Routes>
+          <AnimatePresence exitBeforeEnter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home city={city} setCity={setCity} properties={properties} />
+                }
+              />
+              <Route
+                path="/properties/:city"
+                element={
+                  <Properties
+                    properties={properties}
+                    setProperties={setProperties}
+                    filteredProperties={filteredProperties}
+                    setFilteredProperties={setFilteredProperties}
+                    city={city}
+                  />
+                }
+              />
+              <Route
+                path="/properties/listing/:id"
+                element={
+                  <Properties
+                    properties={properties}
+                    setProperties={setProperties}
+                    filteredProperties={filteredProperties}
+                    setFilteredProperties={setFilteredProperties}
+                    city={city}
+                  />
+                }
+              />
+              <Route
+                path="/addEdit/"
+                element={
+                  <AddEdit
+                    properties={properties}
+                    setProperties={setProperties}
+                  />
+                }
+              />
+              <Route
+                path="/addEdit/:id"
+                element={
+                  <AddEdit
+                    properties={properties}
+                    setProperties={setProperties}
+                  />
+                }
+              />
+              <Route path="/*" element={<Pagina404 />} />
+            </Routes>
+          </AnimatePresence>
+          <Footer />
         </>
       )}
     </>

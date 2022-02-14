@@ -14,6 +14,7 @@ import {
   MdOutlineEmail,
   MdClose,
 } from "react-icons/md";
+import { trAnimation } from "../animation";
 
 const GridLine = ({ item, details, setDetails }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -31,6 +32,11 @@ const GridLine = ({ item, details, setDetails }) => {
       onHoverStart={infoHandlerTrue}
       onHoverEnd={infoHandlerFalse}
       onClick={() => navigate(`/properties/listing/${item.id}`)}
+      variants={trAnimation}
+      whileHover={{
+        scale: 1.05,
+        transition: { duration: 0.3, ease: "linear" },
+      }}
     >
       <td className="rent">
         <h3>

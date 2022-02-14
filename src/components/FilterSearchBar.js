@@ -15,6 +15,11 @@ import { MdOutlineGrid4X4 } from "react-icons/md";
 import { sortByValue } from "../util/sort";
 //framer motion
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  filterAnimation,
+  openFilterAnimation,
+  shadowAnimation,
+} from "../animation";
 
 const FilterSearchBar = ({
   display,
@@ -131,36 +136,48 @@ const FilterSearchBar = ({
 
   return (
     <>
-      {!showBar && (
-        <PropertiesBarHidden layoutId="bar" transition={{ bounce: 0 }}>
-          <motion.div>
-            <FaFilter />
-          </motion.div>
-          <motion.div>
-            <BsSearch />
-          </motion.div>
-          <button
-            className={`outline round ${display == "cards" && "grid"}`}
-            onClick={displayHandler}
+      <AnimatePresence>
+        {!showBar && (
+          <PropertiesBarHidden
+            variants={filterAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
           >
-            {display == "grid" ? <BsGridFill /> : <MdOutlineGrid4X4 />}
-          </button>
-          <button className="round white" onClick={() => setShowBar(true)}>
-            <BsArrowRightShort />
-          </button>
-        </PropertiesBarHidden>
-      )}
+            <motion.div>
+              <FaFilter />
+            </motion.div>
+            <motion.div>
+              <BsSearch />
+            </motion.div>
+            <button
+              className={`outline round ${display == "cards" && "grid"}`}
+              onClick={displayHandler}
+            >
+              {display == "grid" ? <BsGridFill /> : <MdOutlineGrid4X4 />}
+            </button>
+            <button className="round white" onClick={() => setShowBar(true)}>
+              <BsArrowRightShort />
+            </button>
+          </PropertiesBarHidden>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {showBar && (
           <>
             <Shadow
               onClick={() => setShowBar(false)}
-              variants="fade"
-              initial={{ opacity: 0, transition: { duration: 0.3 } }}
-              animate={{ opacity: 1, transition: { duration: 0.3 } }}
-              exit={{ opacity: 0, transition: { duration: 0.3 } }}
+              variants={shadowAnimation}
+              initial="hidden"
+              animate="show"
+              exit="exit"
             ></Shadow>
-            <PropertiesBar layoutId="bar">
+            <PropertiesBar
+              variants={openFilterAnimation}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+            >
               <div className="section">
                 <header>
                   <FaFilter />

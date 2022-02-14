@@ -86,6 +86,7 @@ const Gallery = ({ img }) => {
 };
 
 const Container = styled.div`
+  z-index: 20;
   position: relative;
   top: 0;
   left: 0;
@@ -93,6 +94,7 @@ const Container = styled.div`
   height: 100%;
   overflow: hidden;
   &.fullScreen {
+    z-index: 20;
     position: fixed;
     width: 100vw;
     height: 100vh;

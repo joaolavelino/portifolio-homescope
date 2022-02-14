@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { shadowAnimation, pageAnimation } from "../animation";
 import React, { useRef, useState } from "react";
 import { BsTree, BsMap, BsEye } from "react-icons/bs";
 import { BiTrain, BiBus } from "react-icons/bi";
@@ -29,8 +30,19 @@ const PropertyDetails = ({ pathId, properties }) => {
   };
 
   return (
-    <Shadow className="shadow">
-      <DetailsCard>
+    <Shadow
+      className="shadow"
+      variants={shadowAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
+      <DetailsCard
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
         <div className="bg">
           <img src={item.img[0]} alt="Foto de fundo" className="bg" />
           <div className="colorbg" />
@@ -355,6 +367,7 @@ const DetailsCard = styled(motion.article)`
       }
 
       .gallery {
+        z-index: 20;
         width: 100%;
         height: 100%;
         @media screen and (max-width: 1000px) {
@@ -444,7 +457,7 @@ const DetailsCard = styled(motion.article)`
     }
   }
   footer {
-    z-index: 14;
+    z-index: 13;
     padding: 1rem 2rem;
     background-color: lightgray;
     display: flex;

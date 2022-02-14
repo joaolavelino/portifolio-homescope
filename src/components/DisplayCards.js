@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { cardsStaggerAnimation } from "../animation";
 import Card from "./Card";
 
 const DisplayCards = ({ filteredProperties, details, setDetails }) => {
   return (
-    <Cards>
+    <Cards variants={cardsStaggerAnimation}>
       {filteredProperties.map((e) => (
         <Card key={e.id} item={e} onClick={setDetails} details={details} />
       ))}

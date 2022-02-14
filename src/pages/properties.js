@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { homeAnimation, pageAnimation } from "../animation";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -30,6 +31,10 @@ const Properties = ({
     setPropertiesCity(cityFilter);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [display, details]);
+
   if (!pathId) {
     document.body.style.overflow = "auto";
   } else {
@@ -38,48 +43,59 @@ const Properties = ({
 
   return (
     <>
-      {propertiesCity && (
-        <main>
-          <Header className="header">
-            <Title>
-              <h3>Search results in </h3>
-              <h2>
-                {city}
-                {terms.length ? " / " : ""}
-                {terms}
-              </h2>
-              <Link to="/">
-                <h6>To search properties in another city, clicK here</h6>
-              </Link>
-            </Title>
-          </Header>
-          <FilterSearchBar
-            display={display}
-            setDisplay={setDisplay}
-            properties={propertiesCity}
-            filteredProperties={propertiesCity}
-            setFilteredProperties={setFilteredProperties}
-            terms={terms}
-            setTerms={setTerms}
-          />
-          {display === "cards" ? (
-            <DisplayCards
+      <AnimatePresence>
+        {propertiesCity && (
+          <motion.main
+            variants={pageAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+          >
+            <Header className="header">
+              <Title>
+                <h3>Search results in </h3>
+                <h2>
+                  {city}
+                  {terms.length ? " / " : ""}
+                  {terms}
+                </h2>
+                <Link to="/">
+                  <h6>To search properties in another city, clicK here</h6>
+                </Link>
+              </Title>
+            </Header>
+            <FilterSearchBar
+              display={display}
+              setDisplay={setDisplay}
+              properties={propertiesCity}
               filteredProperties={propertiesCity}
-              setDetails={setDetails}
-              details={details}
+              setFilteredProperties={setFilteredProperties}
+              terms={terms}
+              setTerms={setTerms}
             />
-          ) : (
-            <DisplayGrid
-              filteredProperties={propertiesCity}
-              setDetails={setDetails}
-              details={details}
-            />
-          )}
-          {pathId && filteredProperties && (
-            <PropertyDetails pathId={pathId} properties={properties} />
-          )}
-        </main>
-      )}
+            <AnimatePresence>
+              {display === "cards" ? (
+                <DisplayCards
+                  filteredProperties={propertiesCity}
+                  setDetails={setDetails}
+                  details={details}
+                />
+              ) : (
+                <DisplayGrid
+                  filteredProperties={propertiesCity}
+                  setDetails={setDetails}
+                  details={details}
+                />
+              )}
+            </AnimatePresence>
+            <AnimatePresence>
+              {pathId && filteredProperties && (
+                <PropertyDetails pathId={pathId} properties={properties} />
+              )}
+            </AnimatePresence>
+          </motion.main>
+        )}
+      </AnimatePresence>
     </>
   );
 };

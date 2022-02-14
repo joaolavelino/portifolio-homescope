@@ -1,17 +1,25 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GiCoinsPile } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import DropDown from "./DropDown";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <StyledHeader>
       <Link to="/">
         <h1>Homescope</h1>
       </Link>
-      <AiOutlineMenu />
+      <button className="outline round" onClick={() => setShowMenu(!showMenu)}>
+        <AiOutlineMenu />
+      </button>
+      <AnimatePresence>
+        {showMenu && <DropDown setShowMenu={setShowMenu} />}
+      </AnimatePresence>
     </StyledHeader>
   );
 };

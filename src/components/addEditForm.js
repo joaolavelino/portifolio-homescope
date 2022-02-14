@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { shadowAnimation, pageAnimation } from "../animation";
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -148,6 +149,7 @@ const AddEditForm = ({ properties, setProperties }) => {
         <legend>Location Information</legend>
         <label>City</label>
         <input
+          required
           type="text"
           name="city"
           id="city"
@@ -157,6 +159,7 @@ const AddEditForm = ({ properties, setProperties }) => {
         />
         <label>District</label>
         <input
+          required
           type="text"
           name="district"
           id="district"
@@ -167,6 +170,7 @@ const AddEditForm = ({ properties, setProperties }) => {
         <div className="address color">
           <label>Address</label>
           <input
+            required
             type="text"
             name="address"
             id="address"
@@ -176,6 +180,7 @@ const AddEditForm = ({ properties, setProperties }) => {
           />
           <label>Number</label>
           <input
+            required
             type="text"
             name="number"
             id="number"
@@ -185,6 +190,7 @@ const AddEditForm = ({ properties, setProperties }) => {
           />
           <label>Floor</label>
           <input
+            required
             type="text"
             name="floor"
             id="floor"
@@ -200,6 +206,7 @@ const AddEditForm = ({ properties, setProperties }) => {
           </h4>
           <label>CoordinateX</label>
           <input
+            required
             type="text"
             id="coordinatex"
             placeholder="Coordinate X"
@@ -209,6 +216,7 @@ const AddEditForm = ({ properties, setProperties }) => {
           />
           <label>Coordinatey</label>
           <input
+            required
             type="text"
             id="coordinatey"
             placeholder="Coordinate y"
@@ -220,6 +228,7 @@ const AddEditForm = ({ properties, setProperties }) => {
         <div className="rent color">
           <label>rooms</label>
           <input
+            required
             type="text"
             name="rooms"
             id="rooms"
@@ -229,6 +238,7 @@ const AddEditForm = ({ properties, setProperties }) => {
           />
           <label>area</label>
           <input
+            required
             type="text"
             name="area"
             id="area"
@@ -238,6 +248,7 @@ const AddEditForm = ({ properties, setProperties }) => {
           />
           <label>rent</label>
           <input
+            required
             type="text"
             name="rent"
             id="rent"
@@ -416,6 +427,7 @@ const AddEditForm = ({ properties, setProperties }) => {
       <fieldset className="link">
         <label htmlFor="url">Listing url</label>
         <input
+          required
           type="text"
           name="url"
           id="url"
@@ -449,6 +461,9 @@ const AddEditForm = ({ properties, setProperties }) => {
       </fieldset>
       <div className="buttons">
         <button type="submit">confirm</button>
+        <button type="button" className="gray" onClick={() => navigate(-1)}>
+          cancel
+        </button>
         <button
           type="button"
           className="gray small"
@@ -458,8 +473,20 @@ const AddEditForm = ({ properties, setProperties }) => {
         </button>
       </div>
       {showDelete && (
-        <div className="shadow">
-          <div className="deleteConfirmation">
+        <motion.div
+          className="shadow"
+          variants={shadowAnimation}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
+          <motion.div
+            className="deleteConfirmation"
+            variants={pageAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+          >
             <h4>Insert the "user" password to confirm:</h4>
             <input
               type="password"
@@ -477,8 +504,8 @@ const AddEditForm = ({ properties, setProperties }) => {
             >
               Cancel
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </StyledForm>
   );

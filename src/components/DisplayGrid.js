@@ -16,10 +16,11 @@ import {
   MdOutlineEmail,
   MdClose,
 } from "react-icons/md";
+import { cardsStaggerAnimation } from "../animation";
 
 const DisplayGrid = ({ filteredProperties, details, setDetails }) => {
   return (
-    <Grid>
+    <Grid variants={cardsStaggerAnimation}>
       <thead>
         <tr></tr>
       </thead>

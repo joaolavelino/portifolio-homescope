@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { cardAnimation } from "../animation";
 
 const Card = ({ item, details, setDetails }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -15,7 +16,11 @@ const Card = ({ item, details, setDetails }) => {
 
   return (
     <Link to={`/properties/listing/${item.id}`}>
-      <StyledCard onHoverStart={infoHandlerTrue} onHoverEnd={infoHandlerFalse}>
+      <StyledCard
+        onHoverStart={infoHandlerTrue}
+        onHoverEnd={infoHandlerFalse}
+        variants={cardAnimation}
+      >
         <div className="rent">
           <h3>CHF {item.rent}</h3>
         </div>
@@ -88,7 +93,6 @@ const StyledCard = styled(motion.article)`
   transition: 0.4s;
   &:hover {
     box-shadow: 7px 7px 18px rgba(0, 0, 0, 0.4);
-    transform: translate(0, -0.6rem);
     transform: scale(1.05);
     .rent {
       transform: scale(1.25);
