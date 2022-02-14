@@ -3,6 +3,7 @@ import { pageAnimation, homeAnimation, quickFade } from "../animation";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import logo from "../media/logo.png";
 
 const Home = ({ city, setCity, properties }) => {
   const [cityList, setCityList] = useState(null);
@@ -61,8 +62,17 @@ const Home = ({ city, setCity, properties }) => {
         </div>
         <section className="content">
           <header>
-            <motion.h3 variants={homeAnimation}>Welcome to</motion.h3>
-            <motion.h1 variants={homeAnimation}>Homescope</motion.h1>
+            <div className="logo">
+              <motion.img
+                src={logo}
+                alt="homescape logo"
+                variants={homeAnimation}
+              />
+            </div>
+            <div className="text">
+              <motion.h3 variants={homeAnimation}>Welcome to</motion.h3>
+              <motion.h1 variants={homeAnimation}>Homescope</motion.h1>
+            </div>
           </header>
           {cityList && (
             <>
@@ -110,6 +120,18 @@ const HomeContainer = styled(motion.div)`
   justify-content: center;
   header {
     font-size: 150%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    @media screen and (max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    img {
+      width: 5rem;
+    }
+    .logo {
+    }
   }
   .bg {
     position: absolute;

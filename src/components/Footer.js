@@ -37,6 +37,14 @@ const StyledFooter = styled(motion.footer)`
   color: gray;
   background-color: white;
   border-top: 1px solid gray;
+  @media screen and (max-width: 480px) {
+    padding: 1rem 1rem;
+  }
+  @media screen and (max-width: 1040px) {
+    p {
+      display: none;
+    }
+  }
 
   p {
     font-size: 80%;

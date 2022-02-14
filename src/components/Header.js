@@ -5,6 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { GiCoinsPile } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
+import logo from "../media/logo.png";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -12,7 +13,10 @@ const Header = () => {
   return (
     <StyledHeader>
       <Link to="/">
-        <h1>Homescope</h1>
+        <div className="logo">
+          <img src={logo} alt="homescape logo" />
+          <h1>Homescope</h1>
+        </div>
       </Link>
       <button className="outline round" onClick={() => setShowMenu(!showMenu)}>
         <AiOutlineMenu />
@@ -42,6 +46,14 @@ const StyledHeader = styled(motion.header)`
   }
   a {
     color: white;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  img {
+    width: 1.5rem;
   }
 `;
 
