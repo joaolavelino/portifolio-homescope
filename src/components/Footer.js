@@ -13,10 +13,13 @@ const Footer = () => {
         </p>
       </div>
       <div className="buttons">
-        <a href="">
+        <a
+          href="https://www.linkedin.com/in/joao-avelino-045b37108/"
+          target="_blank"
+        >
           <button className="gray small "> linkedIn</button>
         </a>
-        <a href="">
+        <a href="https://github.com/joaolavelino" target="_blank">
           <button className="gray small "> github</button>
         </a>
       </div>
