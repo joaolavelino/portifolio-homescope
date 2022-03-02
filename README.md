@@ -1,7 +1,7 @@
 # HOMESCOPE
 ![Homescope logo](https://github.com/joaolavelino/portifolio-homescope/blob/master/public/logo192.png)
 
-##About the Project
+## About the Project
 Is's a education project I made in with a couple of goals:
 
  - Practice with different tools on React: Framer Motion and Styled Components;
